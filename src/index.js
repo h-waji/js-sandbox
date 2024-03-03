@@ -1,73 +1,53 @@
 import "./styles.css";
 
-document.getElementById("app").innerHTML = `
-<h1>Sandbox</h1>
-<div>
-  message
-</div>
-`;
+const onClickAdd = () => {
+  const inputText = document.getElementById("add-text").value;
+  document.getElementById("add-text").value = "";
 
-// -----
-const person = {
-  name: "Lazy",
-  age: 100
+  const li = document.createElement("li");
+
+  const div = document.createElement("div");
+  div.className = "list-row";
+
+  const p = document.createElement("p");
+  p.className = "try-item";
+  p.innerText = inputText;
+
+  // 完了ボタン
+  const completeButton = document.createElement("button");
+  completeButton.innerText = "完了";
+  completeButton.addEventListener("click", () => {
+    const moveTarget = completeButton.closest("li");
+    console.log(moveTarget);
+    completeButton.nextElementSibling.remove();
+    completeButton.remove();
+
+    // 戻すボタン
+    const backButton = document.createElement("button");
+    backButton.innerText = "戻す";
+    moveTarget.firstElementChild.appendChild(backButton);
+
+    document.getElementById("complete-list").appendChild(moveTarget);
+  });
+
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除";
+  deleteButton.addEventListener("click", () => {
+    const deleteTarget = deleteButton.closest("li");
+    console.log(deleteTarget);
+    document.getElementById("incomplete-list").removeChild(deleteTarget);
+  })
+
+  div.appendChild(p);
+  div.appendChild(completeButton);
+  div.appendChild(deleteButton);
+  li.appendChild(div);
+
+  // console.log(li);
+  // console.log(div);
+  // console.log(p);
+
+  document.getElementById("incomplete-list").appendChild(li);
 }
-console.log(person);
-person.name = "Namakemono";
-person.address = "Hogehoge";
-console.log(person);
 
-const colors = ["red", "yellow", "blue"];
-console.log(colors);
-colors[0] = "black";
-console.log(colors);
-colors.push("white");
-console.log(colors);
-
-// -----
-const message = `I'm ${person.name}...`;
-console.log(message);
-
-// -----
-// const fnarrow = (str) => {
-//   return str;
-// };
-const fnarrow = (str) => str;
-console.log(fnarrow('Arrow'));
-
-// -----
-const vocaloid = ["Miku", "Rin", "Len"];
-// vocaloid.map((name) => {
-//   console.log(name);
-// });
-
-const vocaloid2 = vocaloid.map((name) => {
-  return name;
-});
-console.log(vocaloid2);
-
-const numbers = [1, 2, 3, 4, 5];
-const newNumbers = numbers.filter((n) => {
-  return n % 2 === 1;
-});
-console.log(newNumbers);
-
-const newVocaloid = vocaloid.map((name) => {
-  if (name === "Miku") {
-    return `${name}さん`;
-  } else if (name === "Rin") {
-    return `${name}ちゃん`;
-  } else if (name === "Len") {
-    return `${name}くん`;
-  }
-});
-console.log(newVocaloid);
-
-// -----
-// "Vocaloid" 0 10 undefined null false NaN "" [] {}
-const val = "";
-if (val) {
-  console.log("truthy");
-} else {
-  console.log("falsy");
-}
+document.getElementById("add-button").addEventListener("click", onClickAdd);

@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TODO</title>
+    <title>Things to try list</title>
     <meta charset="UTF-8" />
   </head>
 
   <body>
     <div class="input-area">
-      <input placeholder="TODOを入力">
-      <button>追加</button>
+      <input id="add-text" placeholder="試したいこと">
+      <button id="add-button">追加</button>
     </div>
     <div class="incomplete-area">
-      <p class="title">未完了のTODO</p>
-      <ul>
+      <p class="title">これから試すこと</p>
+      <ul id="incomplete-list">
         <li>
           <div class="list-row">
-            <p class="todo-item">TODOです</p>
+            <p class="try-item">QAエンジニアのスキルを習得すること</p>
             <button>完了</button>
             <button>削除</button>
           </div>
         </li>
         <li>
           <div class="list-row">
-            <p class="todo-item">TODOです</p>
+            <p class="try-item">モダンな開発スキルを習得すること</p>
+            <button>完了</button>
+            <button>削除</button>
+          </div>
+        </li>
+        <li>
+          <div class="list-row">
+            <p class="try-item">久々にGithubの更新をすること＆継続</p>
             <button>完了</button>
             <button>削除</button>
           </div>
@@ -30,11 +37,11 @@
       </ul>
     </div>
     <div class="complete-area">
-      <p class="title">完了のTODO</p>
-      <ul>
+      <p class="title">試したこと（新しい体験、学び）</p>
+      <ul id="complete-list">
         <li>
           <div class="list-row">
-            <p class="todo-item">TODOでした</p>
+            <p class="try-item">ニャゴヤ</p>
             <button>戻す</button>
           </div>
         </li>
