@@ -4,6 +4,10 @@ const onClickAdd = () => {
   const inputText = document.getElementById("add-text").value;
   document.getElementById("add-text").value = "";
 
+  createIncompleteTryItem(inputText);
+}
+
+const createIncompleteTryItem = (tryItem) => {
   const li = document.createElement("li");
 
   const div = document.createElement("div");
@@ -11,7 +15,7 @@ const onClickAdd = () => {
 
   const p = document.createElement("p");
   p.className = "try-item";
-  p.innerText = inputText;
+  p.innerText = tryItem;
 
   // 完了ボタン
   const completeButton = document.createElement("button");
@@ -25,8 +29,14 @@ const onClickAdd = () => {
     // 戻すボタン
     const backButton = document.createElement("button");
     backButton.innerText = "戻す";
-    moveTarget.firstElementChild.appendChild(backButton);
 
+    backButton.addEventListener("click", () => {
+      const tryItemText = backButton.previousElementSibling.innerText;
+      createIncompleteTryItem(tryItemText);
+      backButton.closest("li").remove();
+    });
+
+    moveTarget.firstElementChild.appendChild(backButton);
     document.getElementById("complete-list").appendChild(moveTarget);
   });
 
@@ -48,6 +58,6 @@ const onClickAdd = () => {
   // console.log(p);
 
   document.getElementById("incomplete-list").appendChild(li);
-}
+};
 
 document.getElementById("add-button").addEventListener("click", onClickAdd);
